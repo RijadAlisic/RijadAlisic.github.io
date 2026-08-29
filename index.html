@@ -17,13 +17,26 @@
     --maroon-glow:rgba(140,42,50,0.30);
     --maroon-glow-soft:rgba(90,26,32,0.14);
     --gold-signal:#C98F3A;
+    --nav-bg:rgba(11,10,12,0.92);
+  }
+  :root[data-theme="light"]{
+    --paper:#F4F0EA;
+    --ink:#211D1B;
+    --ink-dim:#6E6660;
+    --ink-faint:#9A9188;
+    --line:#DED5C9;
+    --maroon-glow:rgba(140,42,50,0.14);
+    --maroon-glow-soft:rgba(90,26,32,0.07);
+    --gold-signal:#96601E;
+    --nav-bg:rgba(244,240,234,0.92);
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
     margin:0; background:var(--paper); color:var(--ink);
     font-family:'IBM Plex Sans', sans-serif;
-    font-weight:300;
+    font-weight:400;
+    transition:background 200ms ease, color 200ms ease;
   }
   .atmosphere{
     position:fixed; inset:0; z-index:-1;
@@ -36,15 +49,24 @@
     position:sticky; top:0; z-index:25;
     display:flex; justify-content:space-between; align-items:center;
     padding:18px 20px;
-    background:rgba(11,10,12,0.92);
+    background:var(--nav-bg);
     border-bottom:1px solid var(--line);
     font-family:'IBM Plex Mono', monospace;
-    font-size:11px; letter-spacing:0.08em;
+    font-size:12px; letter-spacing:0.08em;
     text-transform:uppercase;
   }
   nav .mark{ color:var(--ink); }
   nav .links{ display:flex; gap:16px; color:var(--ink-dim); }
   nav a{ color:inherit; text-decoration:none; }
+  .nav-right{ display:flex; align-items:center; gap:14px; }
+  .theme-toggle{
+    background:none; border:1px solid var(--line); border-radius:2px;
+    cursor:pointer; padding:6px 10px;
+    color:var(--ink-dim);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px; letter-spacing:0.08em; text-transform:uppercase;
+  }
+  .theme-toggle:hover{ color:var(--ink); border-color:var(--ink-faint); }
   .menu-toggle{
     display:flex; flex-direction:column; justify-content:center; gap:5px;
     width:32px; height:32px;
@@ -86,10 +108,11 @@
   }
   .menu-backdrop.open{ display:block; }
 
-  section{ padding:64px 22px; max-width:640px; margin:0 auto; }
+  section{ padding:44px 22px; max-width:640px; margin:0 auto; }
+  #about{ padding-top:0; }
 
   /* HERO */
-  .hero{ padding-top:56px; padding-bottom:48px; text-align:left; }
+  .hero{ padding-top:40px; padding-bottom:16px; text-align:left; }
   .hero-identity{ text-align:center; margin-bottom:36px; }
   .hero-pitch{ text-align:left; max-width:480px; margin:0 auto; }
   .name{
@@ -101,13 +124,9 @@
   }
   .title{
     font-family:'IBM Plex Mono', monospace;
-    font-size:13px; letter-spacing:0.06em;
+    font-size:14px; letter-spacing:0.06em;
     color:var(--ink-dim);
     margin:0;
-  }
-  .feedback-line{
-    font-size:14px; line-height:1.7; color:var(--ink-dim);
-    max-width:480px; margin:16px 0 0;
   }
 
   h2{
@@ -160,17 +179,12 @@
     100%      { transform:translateY(-4.2em); }
   }
   .about-body p{
-    font-size:15px; line-height:1.7; color:var(--ink);
-    margin:0 0 14px;
-  }
-  .about-grid p{
-    font-size:15px; line-height:1.7; color:var(--ink);
+    font-size:16px; line-height:1.7; color:var(--ink);
     margin:0;
   }
-  .about-grid{ }
   .fact-list{
     list-style:none; margin:18px 0 0; padding:0;
-    font-size:13px; line-height:1.6;
+    font-size:14px; line-height:1.6;
   }
   .fact-list li{
     padding:10px 0;
@@ -182,82 +196,67 @@
     display:block;
     font-family:'League Spartan', sans-serif;
     font-weight:500;
-    font-size:13px; letter-spacing:0.01em;
+    font-size:14px; letter-spacing:0.01em;
     color:var(--ink);
     margin-bottom:3px;
   }
-  .photo-slot{
-    float:right;
-    width:108px; height:136px;
-    margin:0 0 14px 16px;
-    border:1px dashed var(--ink-faint);
-    display:flex; align-items:center; justify-content:center;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:9px; letter-spacing:0.05em; text-transform:uppercase;
-    color:var(--ink-faint);
-    filter:grayscale(1) contrast(1.05);
-    background:linear-gradient(160deg, rgba(140,42,50,0.15), rgba(11,10,12,0.4));
+  .hero-photo{
+    margin:28px auto 0;
+    width:150px;
   }
-  .photo-slot img{
-    width:100%; height:100%; object-fit:cover;
-    filter:grayscale(1) sepia(0.2) hue-rotate(310deg) saturate(1.4) contrast(1.05);
+  .hero-photo img{
+    display:block;
+    width:100%; aspect-ratio:4/5; object-fit:cover;
+    border-radius:4px;
+    background:linear-gradient(160deg, rgba(140,42,50,0.15), rgba(11,10,12,0.4));
   }
 
   /* PUBLICATIONS */
-  .pub-list{ list-style:none; margin:0; padding:0; }
-  .pub-list li{
+  .pub-list, .news-list{ list-style:none; margin:0; padding:0; }
+  .pub-list li, .news-list li{
     display:flex; gap:14px;
     padding:12px 0;
     border-top:1px solid var(--line);
-    font-size:13px;
+    font-size:14px;
   }
-  .pub-list li:last-child{ border-bottom:1px solid var(--line); }
-  .pub-year{
+  .pub-list li:last-child, .news-list li:last-child{ border-bottom:1px solid var(--line); }
+  .pub-year, .news-date{
     font-family:'IBM Plex Mono', monospace;
     color:var(--ink-faint);
     flex:0 0 40px;
   }
+  .news-date{ flex-basis:72px; }
   .pub-main{ flex:1; }
-  .pub-title{ color:var(--ink-dim); line-height:1.5; }
+  .pub-title, .news-item{ color:var(--ink-dim); line-height:1.5; }
+  .news-item a{ color:inherit; text-decoration:none; border-bottom:1px solid var(--ink-faint); padding-bottom:1px; }
+  .news-item a:hover{ color:var(--gold-signal); border-color:var(--gold-signal); }
   .pub-tags{
     display:flex; flex-wrap:wrap; gap:6px;
     margin-top:6px;
   }
   .pub-tag{
     font-family:'IBM Plex Mono', monospace;
-    font-size:10px; letter-spacing:0.03em;
+    font-size:11px; letter-spacing:0.03em;
     color:var(--ink-faint);
     border:1px solid var(--line);
     padding:3px 8px;
     border-radius:2px;
   }
-  .pub-note{
-    margin-top:16px; font-size:11px; color:var(--ink-faint);
+  .pub-note, .news-note{
+    margin-top:16px; font-size:12px; color:var(--ink-faint);
     font-family:'IBM Plex Mono', monospace;
   }
 
   /* WRITING */
   .writing-note{
-    font-size:14px; color:var(--ink-dim); line-height:1.7;
-  }
-  .tag-list{
-    display:flex; flex-wrap:wrap; gap:10px;
-    margin-bottom:28px;
-  }
-  .tag{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12px; letter-spacing:0.03em;
-    color:var(--ink-dim);
-    border:1px solid var(--line);
-    padding:7px 14px;
-    border-radius:2px;
+    font-size:15px; color:var(--ink-dim); line-height:1.7;
   }
 
   /* CONTACT */
   .contact-links{
     display:flex; flex-wrap:wrap; gap:10px 18px;
     font-family:'IBM Plex Mono', monospace;
-    font-size:12px; letter-spacing:0.04em;
+    font-size:13px; letter-spacing:0.04em;
   }
   .contact-links span{ color:var(--ink-dim); }
   .contact-links a{
@@ -270,12 +269,12 @@
   footer{
     padding:30px 22px 50px; text-align:center;
     font-family:'IBM Plex Mono', monospace;
-    font-size:10px; color:var(--ink-faint); letter-spacing:0.06em;
+    font-size:11px; color:var(--ink-faint); letter-spacing:0.06em;
   }
 
   /* ===== DESKTOP: open up, don't just center the phone layout ===== */
   @media (min-width:900px){
-    section{ max-width:1040px; padding:96px 48px; }
+    section{ max-width:1040px; padding:64px 48px; }
 
     nav{ padding:22px 48px; }
     .menu-toggle{ display:none; }
@@ -293,31 +292,29 @@
     }
     nav .links a{
       padding:0;
-      font-size:11px;
+      font-size:12px;
       border-bottom:none;
     }
 
     .hero{
-      padding-top:64px; padding-bottom:64px;
+      display:flex; align-items:center; gap:64px;
+      padding-top:64px; padding-bottom:24px;
     }
-    .hero-identity{ margin-bottom:56px; }
+    .hero-copy{ flex:1; min-width:0; }
+    .hero-identity{ text-align:left; margin-bottom:28px; }
     .name{ font-size:clamp(56px, 6vw, 84px); }
-    .title{ font-size:15px; }
+    .title{ font-size:16px; }
     .wheel-line{ font-size:22px; }
-    .feedback-line{ font-size:15px; }
-
-    .about-grid{
-      display:flex;
-      align-items:flex-start;
-      gap:56px;
+    .hero-photo{
+      flex:0 0 30%; max-width:320px; margin:0;
     }
-    .about-grid p{ font-size:17px; }
-    .photo-slot{ float:none; width:220px; height:280px; margin:0; flex:0 0 auto; }
-    .about-text{ flex:1; }
 
-    .fact-list{ font-size:14px; }
+    #about{ padding-top:0; }
+    .about-body p{ font-size:18px; }
 
-    .pub-list li{ font-size:14px; }
+    .fact-list{ font-size:15px; }
+
+    .pub-list li, .news-list li{ font-size:15px; }
   }
 </style>
 </head>
@@ -326,71 +323,73 @@
 
 <nav>
   <span class="mark">R.A.</span>
-  <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </button>
   <span class="links" id="navLinks">
     <button class="menu-close" id="menuClose" aria-label="Close menu">&times;</button>
     <a href="#about">About</a>
-    <a href="#research">Research</a>
+    <a href="#news">News</a>
+    <a href="#cv">CV</a>
     <a href="#publications">Publications</a>
-    <a href="#projects">Projects</a>
+    <a href="#projects">Side Projects</a>
     <!-- <a href="#writing">Writing</a> -->
     <a href="#contact">Contact</a>
+  </span>
+  <span class="nav-right">
+    <button class="theme-toggle" id="themeToggle" aria-label="Switch to day theme">Day</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </span>
 </nav>
 <div class="menu-backdrop" id="menuBackdrop"></div>
 
 <section class="hero">
-  <div class="hero-identity">
-    <h1 class="name">Rijad Alisic</h1>
-    <p class="title">Researcher in Control of Dynamic Systems.</p>
-  </div>
-  <div class="hero-pitch">
-    <p class="wheel-line">
-      <span class="wheel-static">I make automatic control systems compatible with:</span>
-      <span class="wheel"><span class="wheel-track">
-        <span>cybersecurity</span>
-        <span>adversarial learning environments</span>
-        <span>privacy</span>
-        <span>cybersecurity</span>
-      </span></span>
-    </p>
-  </div>
-</section>
-
-
-<section id="about">
-  <h2>About</h2>
-  <div class="about-grid">
-    <div class="photo-slot"><img src="rijad.jpg" alt="Rijad Alisic"></div>
-    <div class="about-text">
-      <p>I'm a Knut and Alice Wallenberg Postdoctoral Research Scholar at the Massachusetts Institute of Technology's Laboratory for Information and Decision Systems. My work models attackers from a defender's perspective, focusing on what they can learn from a system rather than assuming their goals in advance, and examines how feedback can be implemented, modified based on data, and exploited in adversarial, contested settings.</p>
-      <ul class="fact-list">
-        <li><span class="fact-label">Wallenberg Postdoctoral Fellow</span>Massachusetts Institute of Technology, Laboratory for Information and Decision Systems</li>
-        <li><span class="fact-label">Postdoctoral Researcher, 2025</span>KTH Royal Institute of Technology, Division of Decision and Control Systems</li>
-        <li><span class="fact-label">PhD, Automatic Control, 2023</span>KTH Royal Institute of Technology, Division of Decision and Control Systems</li>
-        <li><span class="fact-label">Lic, Automatic Control, 2021</span>KTH Royal Institute of Technology, Division of Decision and Control Systems</li>
-        <li><span class="fact-label">MSc, Engineering Physics, 2018</span>Lund University. Specialization in Automatic Control.</li>
-        <li><span class="fact-label">Visiting Researcher, 2022</span>University of Melbourne</li>
-        <li><span class="fact-label">Visiting Researcher, 2024</span>Seoul National University (SNU)</li>
-        <li><span class="fact-label">Visiting Researcher, 2024</span>Seoul National University of Science and Technology (SeoulTech)</li>
-        <li><span class="fact-label">Visiting Researcher, 2024</span>Lund University</li>
-      </ul>
+  <div class="hero-copy">
+    <div class="hero-identity">
+      <h1 class="name">Rijad Alisic</h1>
+      <p class="title">Researcher in Control of Dynamic Systems.</p>
+    </div>
+    <div class="hero-pitch">
+      <p class="wheel-line">
+        <span class="wheel-static">I make automatic control systems compatible with:</span>
+        <span class="wheel"><span class="wheel-track">
+          <span>cybersecurity</span>
+          <span>adversarial learning environments</span>
+          <span>privacy</span>
+          <span>cybersecurity</span>
+        </span></span>
+      </p>
     </div>
   </div>
+  <figure class="hero-photo">
+    <img src="rijad.jpg" alt="Rijad Alisic">
+  </figure>
 </section>
 
-<section id="research">
-  <h2>Research</h2>
-
-  <div class="tag-list">
-    <span class="tag">Control Theory</span>
-    <span class="tag">Cyber-Physical Systems</span>
-    <span class="tag">Machine Learning</span>
-    <span class="tag">Privacy</span>
-    <span class="tag">Security</span>
+<section id="about">
+  <div class="about-body">
+    <p>I'm a Knut and Alice Wallenberg Postdoctoral Research Scholar at the Massachusetts Institute of Technology's Laboratory for Information and Decision Systems. I work in automatic control, on the design of feedback loops for dynamic systems and the role data plays in closing and shaping them. My work models attackers from a defender's perspective, asking what they can learn from a system rather than assuming their goals in advance, and studies where data reveals a system to be most sensitive to adversarial exploitation.</p>
   </div>
+</section>
+
+<section id="news">
+  <h2>News</h2>
+  <ul class="news-list">
+    <li><span class="news-date">Aug 2026</span><span class="news-item">Speaking at the <a href="https://sites.google.com/view/ifac-wc-2026-encrypted">IFAC 2026 Pre-Congress Workshop: Encrypted Control Workshop and Live Demonstrations</a>, August 23.</span></li>
+  </ul>
+</section>
+
+<section id="cv">
+  <h2>CV</h2>
+  <ul class="fact-list">
+    <li><span class="fact-label">Wallenberg Postdoctoral Fellow</span>Massachusetts Institute of Technology, Laboratory for Information and Decision Systems</li>
+    <li><span class="fact-label">Postdoctoral Researcher, 2025</span>KTH Royal Institute of Technology, Division of Decision and Control Systems</li>
+    <li><span class="fact-label">PhD, Automatic Control, 2023</span>KTH Royal Institute of Technology, Division of Decision and Control Systems</li>
+    <li><span class="fact-label">Lic, Automatic Control, 2021</span>KTH Royal Institute of Technology, Division of Decision and Control Systems</li>
+    <li><span class="fact-label">MSc, Engineering Physics, 2018</span>Lund University. Specialization in Automatic Control.</li>
+    <li><span class="fact-label">Visiting Researcher, 2022</span>University of Melbourne</li>
+    <li><span class="fact-label">Visiting Researcher, 2024</span>Seoul National University (SNU) and Seoul National University of Science and Technology (SeoulTech)</li>
+    <li><span class="fact-label">Visiting Researcher, 2024</span>Lund University</li>
+  </ul>
 </section>
 
 <section id="publications">
@@ -408,7 +407,7 @@
 </section>
 
 <section id="projects">
-  <h2>Projects</h2>
+  <h2>Side Projects</h2>
   <ul class="fact-list">
     <li><span class="fact-label">FilesystemMCP</span>Open-source MCP server for filesystem access, extending Anthropic's official implementation</li>
     <li><span class="fact-label">OverleafMCP</span>MCP server for Overleaf integration, forked and extended with additional tooling for LaTeX workflows</li>
@@ -453,6 +452,25 @@
   backdrop.addEventListener('click', closeMenu);
   links.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', closeMenu);
+  });
+
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  function setTheme(theme){
+    if(theme === 'light'){
+      root.setAttribute('data-theme', 'light');
+      themeToggle.textContent = 'Night';
+      themeToggle.setAttribute('aria-label', 'Switch to night theme');
+    } else {
+      root.removeAttribute('data-theme');
+      themeToggle.textContent = 'Day';
+      themeToggle.setAttribute('aria-label', 'Switch to day theme');
+    }
+    localStorage.setItem('theme', theme);
+  }
+  setTheme(localStorage.getItem('theme') === 'light' ? 'light' : 'dark');
+  themeToggle.addEventListener('click', () => {
+    setTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
   });
 </script>
 
