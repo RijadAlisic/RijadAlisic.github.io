@@ -11,8 +11,8 @@
   :root{
     --paper:#0B0A0C;
     --ink:#EDE9E4;
-    --ink-dim:#8A8480;
-    --ink-faint:#5C5754;
+    --ink-dim:#A39D97;
+    --ink-faint:#8F8983;
     --line:#221D1F;
     --maroon-glow:rgba(140,42,50,0.30);
     --maroon-glow-soft:rgba(90,26,32,0.14);
@@ -22,8 +22,8 @@
   :root[data-theme="light"]{
     --paper:#F4F0EA;
     --ink:#211D1B;
-    --ink-dim:#6E6660;
-    --ink-faint:#9A9188;
+    --ink-dim:#5C5650;
+    --ink-faint:#6B6459;
     --line:#DED5C9;
     --maroon-glow:rgba(140,42,50,0.14);
     --maroon-glow-soft:rgba(90,26,32,0.07);
@@ -52,7 +52,7 @@
     background:var(--nav-bg);
     border-bottom:1px solid var(--line);
     font-family:'IBM Plex Mono', monospace;
-    font-size:12px; letter-spacing:0.08em;
+    font-size:13px; letter-spacing:0.08em;
     text-transform:uppercase;
   }
   nav .mark{ color:var(--ink); text-decoration:none; }
@@ -63,12 +63,12 @@
     cursor:pointer; padding:6px 10px;
     color:var(--ink-dim);
     font-family:'IBM Plex Mono', monospace;
-    font-size:10px; letter-spacing:0.08em; text-transform:uppercase;
+    font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
   }
   .theme-toggle:hover{ color:var(--ink); border-color:var(--ink-faint); }
   .back-link{
     font-family:'IBM Plex Mono', monospace;
-    font-size:12px; letter-spacing:0.06em;
+    font-size:13px; letter-spacing:0.06em;
     color:var(--ink-dim);
   }
   .back-link:hover{ color:var(--ink); }
@@ -78,7 +78,7 @@
   h2{
     font-family:'League Spartan', sans-serif;
     font-weight:500;
-    font-size:15px; letter-spacing:0.01em;
+    font-size:17px; letter-spacing:0.01em;
     color:var(--ink);
     margin:0 0 26px;
     padding-bottom:10px;
@@ -89,18 +89,19 @@
   .pub-list{ list-style:none; margin:0; padding:0; }
   .pub-list li{
     display:flex; gap:14px;
-    padding:12px 0;
+    padding:14px 0;
     border-top:1px solid var(--line);
-    font-size:14px;
+    font-size:15px;
   }
   .pub-list li:last-child{ border-bottom:1px solid var(--line); }
   .pub-year{
     font-family:'IBM Plex Mono', monospace;
+    font-weight:500;
     color:var(--ink-faint);
     flex:0 0 40px;
   }
   .pub-main{ flex:1; }
-  .pub-title{ color:var(--ink-dim); line-height:1.5; }
+  .pub-title{ font-size:17px; color:var(--ink); line-height:1.5; }
   .pub-title a{ color:inherit; text-decoration:none; border-bottom:1px solid var(--ink-faint); padding-bottom:1px; }
   .pub-title a:hover{ color:var(--gold-signal); border-color:var(--gold-signal); }
   .pub-tags{
@@ -109,7 +110,7 @@
   }
   .pub-tag{
     font-family:'IBM Plex Mono', monospace;
-    font-size:11px; letter-spacing:0.03em;
+    font-size:12px; letter-spacing:0.03em;
     color:var(--ink-faint);
     border:1px solid var(--line);
     padding:3px 8px;
@@ -119,13 +120,14 @@
   footer{
     padding:30px 22px 50px; text-align:center;
     font-family:'IBM Plex Mono', monospace;
-    font-size:11px; color:var(--ink-faint); letter-spacing:0.06em;
+    font-size:12px; color:var(--ink-faint); letter-spacing:0.06em;
   }
 
   @media (min-width:900px){
     section{ max-width:1040px; padding:64px 48px; }
     nav{ padding:22px 48px; }
-    .pub-list li{ font-size:15px; }
+    .pub-list li{ font-size:16px; }
+    .pub-title{ font-size:19px; }
   }
 </style>
 </head>
@@ -165,7 +167,8 @@
 <script>
   const themeToggle = document.getElementById('themeToggle');
   const root = document.documentElement;
-  function setTheme(theme){
+  const lightQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
+  function applyTheme(theme){
     if(theme === 'light'){
       root.setAttribute('data-theme', 'light');
       themeToggle.textContent = 'Night';
@@ -175,12 +178,21 @@
       themeToggle.textContent = 'Day';
       themeToggle.setAttribute('aria-label', 'Switch to day theme');
     }
+  }
+  function setTheme(theme){
+    applyTheme(theme);
     localStorage.setItem('theme', theme);
   }
-  setTheme(localStorage.getItem('theme') === 'light' ? 'light' : 'dark');
+  const savedTheme = localStorage.getItem('theme');
+  applyTheme(savedTheme || (lightQuery && lightQuery.matches ? 'light' : 'dark'));
   themeToggle.addEventListener('click', () => {
     setTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
   });
+  if(lightQuery){
+    lightQuery.addEventListener('change', (e) => {
+      if(!localStorage.getItem('theme')) applyTheme(e.matches ? 'light' : 'dark');
+    });
+  }
 </script>
 
 </body>

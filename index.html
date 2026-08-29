@@ -11,8 +11,8 @@
   :root{
     --paper:#0B0A0C;
     --ink:#EDE9E4;
-    --ink-dim:#8A8480;
-    --ink-faint:#5C5754;
+    --ink-dim:#A39D97;
+    --ink-faint:#8F8983;
     --line:#221D1F;
     --maroon-glow:rgba(140,42,50,0.30);
     --maroon-glow-soft:rgba(90,26,32,0.14);
@@ -22,8 +22,8 @@
   :root[data-theme="light"]{
     --paper:#F4F0EA;
     --ink:#211D1B;
-    --ink-dim:#6E6660;
-    --ink-faint:#9A9188;
+    --ink-dim:#5C5650;
+    --ink-faint:#6B6459;
     --line:#DED5C9;
     --maroon-glow:rgba(140,42,50,0.14);
     --maroon-glow-soft:rgba(90,26,32,0.07);
@@ -52,7 +52,7 @@
     background:var(--nav-bg);
     border-bottom:1px solid var(--line);
     font-family:'IBM Plex Mono', monospace;
-    font-size:12px; letter-spacing:0.08em;
+    font-size:13px; letter-spacing:0.08em;
     text-transform:uppercase;
   }
   nav .mark{ color:var(--ink); }
@@ -64,7 +64,7 @@
     cursor:pointer; padding:6px 10px;
     color:var(--ink-dim);
     font-family:'IBM Plex Mono', monospace;
-    font-size:10px; letter-spacing:0.08em; text-transform:uppercase;
+    font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
   }
   .theme-toggle:hover{ color:var(--ink); border-color:var(--ink-faint); }
   .menu-toggle{
@@ -90,7 +90,8 @@
   nav .links.open{ display:flex; }
   nav .links a{
     padding:20px 28px;
-    font-size:14px;
+    font-size:15px;
+    word-spacing:-0.2em;
     border-bottom:1px solid var(--line);
   }
   .menu-close{
@@ -124,7 +125,7 @@
   }
   .title{
     font-family:'IBM Plex Mono', monospace;
-    font-size:14px; letter-spacing:0.06em;
+    font-size:15px; letter-spacing:0.06em;
     color:var(--ink-dim);
     margin:0;
   }
@@ -132,7 +133,7 @@
   h2{
     font-family:'League Spartan', sans-serif;
     font-weight:500;
-    font-size:15px; letter-spacing:0.01em;
+    font-size:17px; letter-spacing:0.01em;
     color:var(--ink);
     margin:0 0 26px;
     padding-bottom:10px;
@@ -143,7 +144,7 @@
   .wheel-line{
     font-family:'League Spartan', sans-serif;
     font-weight:400;
-    font-size:clamp(17px, 4.6vw, 20px);
+    font-size:clamp(18px, 4.6vw, 21px);
     line-height:1.6;
     margin:0 auto 4px;
     max-width:480px;
@@ -179,15 +180,15 @@
     100%      { transform:translateY(-4.2em); }
   }
   .about-body p{
-    font-size:16px; line-height:1.7; color:var(--ink);
+    font-size:17px; line-height:1.7; color:var(--ink);
     margin:0;
   }
   .fact-list{
     list-style:none; margin:18px 0 0; padding:0;
-    font-size:14px; line-height:1.6;
+    font-size:16px; line-height:1.6;
   }
   .fact-list li{
-    padding:10px 0;
+    padding:12px 0;
     border-top:1px solid var(--line);
     color:var(--ink-dim);
   }
@@ -196,9 +197,9 @@
     display:block;
     font-family:'League Spartan', sans-serif;
     font-weight:500;
-    font-size:14px; letter-spacing:0.01em;
+    font-size:18px; letter-spacing:0.01em;
     color:var(--ink);
-    margin-bottom:3px;
+    margin-bottom:4px;
   }
   .hero-photo{
     margin:28px auto 0;
@@ -210,24 +211,43 @@
     border-radius:4px;
     background:linear-gradient(160deg, rgba(140,42,50,0.15), rgba(11,10,12,0.4));
   }
+  .about-photo{ display:none; }
+
+  @media (max-width:899px){
+    .hero-photo{ display:none; }
+    .about-body{ display:flow-root; }
+    .about-photo{
+      display:block;
+      float:left;
+      width:120px;
+      margin:2px 18px 12px 0;
+    }
+    .about-photo img{
+      display:block;
+      width:100%; aspect-ratio:4/5; object-fit:cover;
+      border-radius:4px;
+      background:linear-gradient(160deg, rgba(140,42,50,0.15), rgba(11,10,12,0.4));
+    }
+  }
 
   /* PUBLICATIONS */
   .pub-list, .news-list{ list-style:none; margin:0; padding:0; }
   .pub-list li, .news-list li{
     display:flex; gap:14px;
-    padding:12px 0;
+    padding:14px 0;
     border-top:1px solid var(--line);
-    font-size:14px;
+    font-size:15px;
   }
   .pub-list li:last-child, .news-list li:last-child{ border-bottom:1px solid var(--line); }
   .pub-year, .news-date{
     font-family:'IBM Plex Mono', monospace;
+    font-weight:500;
     color:var(--ink-faint);
     flex:0 0 40px;
   }
   .news-date{ flex-basis:72px; }
   .pub-main{ flex:1; }
-  .pub-title, .news-item{ color:var(--ink-dim); line-height:1.5; }
+  .pub-title, .news-item{ font-size:17px; color:var(--ink); line-height:1.5; }
   .news-item a, .pub-title a{ color:inherit; text-decoration:none; border-bottom:1px solid var(--ink-faint); padding-bottom:1px; }
   .news-item a:hover, .pub-title a:hover{ color:var(--gold-signal); border-color:var(--gold-signal); }
   .pub-tags{
@@ -236,21 +256,21 @@
   }
   .pub-tag{
     font-family:'IBM Plex Mono', monospace;
-    font-size:11px; letter-spacing:0.03em;
+    font-size:12px; letter-spacing:0.03em;
     color:var(--ink-faint);
     border:1px solid var(--line);
     padding:3px 8px;
     border-radius:2px;
   }
   .pub-note, .news-note{
-    margin-top:16px; font-size:12px; color:var(--ink-faint);
+    margin-top:16px; font-size:13px; color:var(--ink-faint);
     font-family:'IBM Plex Mono', monospace;
   }
   .pub-link{
     display:inline-block;
     margin-top:20px;
     font-family:'IBM Plex Mono', monospace;
-    font-size:13px; letter-spacing:0.04em;
+    font-size:14px; letter-spacing:0.04em;
     color:var(--ink); text-decoration:none;
     border-bottom:1px solid var(--ink-faint);
     padding-bottom:1px;
@@ -259,14 +279,14 @@
 
   /* WRITING */
   .writing-note{
-    font-size:15px; color:var(--ink-dim); line-height:1.7;
+    font-size:16px; color:var(--ink-dim); line-height:1.7;
   }
 
   /* CONTACT */
   .contact-links{
     display:flex; flex-wrap:wrap; gap:10px 18px;
     font-family:'IBM Plex Mono', monospace;
-    font-size:13px; letter-spacing:0.04em;
+    font-size:14px; letter-spacing:0.04em;
   }
   .contact-links span{ color:var(--ink-dim); }
   .contact-links a{
@@ -279,7 +299,7 @@
   footer{
     padding:30px 22px 50px; text-align:center;
     font-family:'IBM Plex Mono', monospace;
-    font-size:11px; color:var(--ink-faint); letter-spacing:0.06em;
+    font-size:12px; color:var(--ink-faint); letter-spacing:0.06em;
   }
 
   /* ===== DESKTOP: open up, don't just center the phone layout ===== */
@@ -302,7 +322,8 @@
     }
     nav .links a{
       padding:0;
-      font-size:12px;
+      font-size:13px;
+      word-spacing:-0.2em;
       border-bottom:none;
     }
 
@@ -313,18 +334,20 @@
     .hero-copy{ flex:1; min-width:0; }
     .hero-identity{ text-align:left; margin-bottom:28px; }
     .name{ font-size:clamp(56px, 6vw, 84px); }
-    .title{ font-size:16px; }
-    .wheel-line{ font-size:22px; }
+    .title{ font-size:17px; }
+    .wheel-line{ font-size:23px; }
     .hero-photo{
       flex:0 0 30%; max-width:320px; margin:0;
     }
 
     #about{ padding-top:0; }
-    .about-body p{ font-size:18px; }
+    .about-body p{ font-size:19px; }
 
-    .fact-list{ font-size:15px; }
+    .fact-list{ font-size:17px; }
+    .fact-label{ font-size:20px; }
 
-    .pub-list li, .news-list li{ font-size:15px; }
+    .pub-list li, .news-list li{ font-size:16px; }
+    .pub-title, .news-item{ font-size:19px; }
   }
 </style>
 </head>
@@ -337,7 +360,7 @@
     <button class="menu-close" id="menuClose" aria-label="Close menu">&times;</button>
     <a href="#about">About</a>
     <a href="#news">News</a>
-    <a href="#cv">CV</a>
+    <a href="#cv">Short CV</a>
     <a href="#publications">Publications</a>
     <a href="#projects">Side Projects</a>
     <!-- <a href="#writing">Writing</a> -->
@@ -377,7 +400,10 @@
 
 <section id="about">
   <div class="about-body">
-    <p>I'm a Knut and Alice Wallenberg Postdoctoral Research Scholar at the Massachusetts Institute of Technology's Laboratory for Information and Decision Systems. I work in automatic control, on the design of feedback loops for dynamic systems and the role data plays in closing and shaping them. My work models attackers from a defender's perspective, asking what they can learn from a system rather than assuming their goals in advance, and studies where data reveals a system to be most sensitive to adversarial exploitation.</p>
+    <figure class="about-photo">
+      <img src="rijad.jpg" alt="Rijad Alisic">
+    </figure>
+    <p>I'm a Knut and Alice Wallenberg Postdoctoral Research Scholar at the Massachusetts Institute of Technology's Laboratory for Information and Decision Systems. My research interest is in automatic control, specifically the design of feedback loops for dynamic systems: how data can be used to shape the closed-loop behavior of a system, and how a system's data reveals its sensitivity to various signal injections. These properties let me model attackers from a defender's perspective: what can be learned and exploited from data, without assuming a fixed objective, so my methods cover a broad range of attacker goals rather than a single cost function.</p>
   </div>
 </section>
 
@@ -391,7 +417,7 @@
 </section>
 
 <section id="cv">
-  <h2>CV</h2>
+  <h2>Short CV</h2>
   <ul class="fact-list">
     <li><span class="fact-label">Wallenberg Postdoctoral Fellow</span>Massachusetts Institute of Technology, Laboratory for Information and Decision Systems</li>
     <li><span class="fact-label">Postdoctoral Researcher, 2025</span>KTH Royal Institute of Technology, Division of Decision and Control Systems</li>
@@ -466,7 +492,8 @@
 
   const themeToggle = document.getElementById('themeToggle');
   const root = document.documentElement;
-  function setTheme(theme){
+  const lightQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
+  function applyTheme(theme){
     if(theme === 'light'){
       root.setAttribute('data-theme', 'light');
       themeToggle.textContent = 'Night';
@@ -476,12 +503,21 @@
       themeToggle.textContent = 'Day';
       themeToggle.setAttribute('aria-label', 'Switch to day theme');
     }
+  }
+  function setTheme(theme){
+    applyTheme(theme);
     localStorage.setItem('theme', theme);
   }
-  setTheme(localStorage.getItem('theme') === 'light' ? 'light' : 'dark');
+  const savedTheme = localStorage.getItem('theme');
+  applyTheme(savedTheme || (lightQuery && lightQuery.matches ? 'light' : 'dark'));
   themeToggle.addEventListener('click', () => {
     setTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
   });
+  if(lightQuery){
+    lightQuery.addEventListener('change', (e) => {
+      if(!localStorage.getItem('theme')) applyTheme(e.matches ? 'light' : 'dark');
+    });
+  }
 </script>
 
 </body>
