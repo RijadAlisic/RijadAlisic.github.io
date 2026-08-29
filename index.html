@@ -228,8 +228,8 @@
   .news-date{ flex-basis:72px; }
   .pub-main{ flex:1; }
   .pub-title, .news-item{ color:var(--ink-dim); line-height:1.5; }
-  .news-item a{ color:inherit; text-decoration:none; border-bottom:1px solid var(--ink-faint); padding-bottom:1px; }
-  .news-item a:hover{ color:var(--gold-signal); border-color:var(--gold-signal); }
+  .news-item a, .pub-title a{ color:inherit; text-decoration:none; border-bottom:1px solid var(--ink-faint); padding-bottom:1px; }
+  .news-item a:hover, .pub-title a:hover{ color:var(--gold-signal); border-color:var(--gold-signal); }
   .pub-tags{
     display:flex; flex-wrap:wrap; gap:6px;
     margin-top:6px;
@@ -384,6 +384,7 @@
 <section id="news">
   <h2>News</h2>
   <ul class="news-list">
+    <li><span class="news-date">Aug 2026</span><span class="news-item">Launched this website.</span></li>
     <li><span class="news-date">Aug 2026</span><span class="news-item">Speaking at the <a href="https://sites.google.com/view/ifac-wc-2026-encrypted">IFAC 2026 Pre-Congress Workshop: Encrypted Control Workshop and Live Demonstrations</a>, August 23.</span></li>
     <li><span class="news-date">Aug 2026</span><span class="news-item">"Anomaly Detection with LWE Encrypted Control" conditionally accepted to IEEE Transactions on Automatic Control.</span></li>
   </ul>
@@ -408,9 +409,9 @@
   <ul class="pub-list">
     <li><span class="pub-year">2026</span><div class="pub-main"><span class="pub-title">Goodbye Innovation: Stealthy Destabilizing Sensor Attacks on Feedback Control Systems</span><div class="pub-tags"><span class="pub-tag">Control Theory</span><span class="pub-tag">Security</span><span class="pub-tag">Cyber-Physical Systems</span></div></div></li>
     <li><span class="pub-year">2026</span><div class="pub-main"><span class="pub-title">SEC-Two: Secure Estimation over Two Channels</span><div class="pub-tags"><span class="pub-tag">Control Theory</span><span class="pub-tag">Security</span><span class="pub-tag">Cyber-Physical Systems</span></div></div></li>
-    <li><span class="pub-year">2026</span><div class="pub-main"><span class="pub-title">How Sensor Attacks Transfer Across Lie Groups</span><div class="pub-tags"><span class="pub-tag">Control Theory</span><span class="pub-tag">Security</span></div></div></li>
-    <li><span class="pub-year">2025</span><div class="pub-main"><span class="pub-title">Anomaly Detection with LWE Encrypted Control</span><div class="pub-tags"><span class="pub-tag">Control Theory</span><span class="pub-tag">Security</span><span class="pub-tag">Privacy</span></div></div></li>
-    <li><span class="pub-year">2023</span><div class="pub-main"><span class="pub-title">Change Time Estimation Uncertainty in Nonlinear Dynamical Systems with Applications to COVID-19</span><div class="pub-tags"><span class="pub-tag">Control Theory</span></div></div></li>
+    <li><span class="pub-year">2026</span><div class="pub-main"><span class="pub-title"><a href="https://arxiv.org/abs/2604.03461" target="_blank" rel="noopener">How Sensor Attacks Transfer Across Lie Groups</a></span><div class="pub-tags"><span class="pub-tag">Control Theory</span><span class="pub-tag">Security</span></div></div></li>
+    <li><span class="pub-year">2025</span><div class="pub-main"><span class="pub-title"><a href="https://arxiv.org/abs/2502.10283" target="_blank" rel="noopener">Anomaly Detection with LWE Encrypted Control</a></span><div class="pub-tags"><span class="pub-tag">Control Theory</span><span class="pub-tag">Security</span><span class="pub-tag">Privacy</span></div></div></li>
+    <li><span class="pub-year">2023</span><div class="pub-main"><span class="pub-title"><a href="https://doi.org/10.1002/rnc.5974" target="_blank" rel="noopener">Change Time Estimation Uncertainty in Nonlinear Dynamical Systems with Applications to COVID-19</a></span><div class="pub-tags"><span class="pub-tag">Control Theory</span></div></div></li>
   </ul>
   <a class="pub-link" href="publications.html">View all publications &rarr;</a>
 </section>
