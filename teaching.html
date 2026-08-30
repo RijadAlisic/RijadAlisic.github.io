@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teaching — Rijad Alisic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&family=League+Spartan:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#0B0A0C;
+    --ink:#EDE9E4;
+    --ink-dim:#A39D97;
+    --ink-faint:#8F8983;
+    --line:#221D1F;
+    --maroon-glow:rgba(140,42,50,0.30);
+    --maroon-glow-soft:rgba(90,26,32,0.14);
+    --gold-signal:#C98F3A;
+    --nav-bg:rgba(11,10,12,0.92);
+  }
+  :root[data-theme="light"]{
+    --paper:#F4F0EA;
+    --ink:#211D1B;
+    --ink-dim:#5C5650;
+    --ink-faint:#6B6459;
+    --line:#DED5C9;
+    --maroon-glow:rgba(140,42,50,0.14);
+    --maroon-glow-soft:rgba(90,26,32,0.07);
+    --gold-signal:#96601E;
+    --nav-bg:rgba(244,240,234,0.92);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:400;
+    transition:background 200ms ease, color 200ms ease;
+  }
+  .atmosphere{
+    position:fixed; inset:0; z-index:-1;
+    background:
+      radial-gradient(ellipse 70% 40% at 80% 6%, var(--maroon-glow), transparent 60%),
+      radial-gradient(ellipse 80% 50% at 10% 90%, var(--maroon-glow-soft), transparent 65%);
+  }
+
+  nav{
+    position:sticky; top:0; z-index:25;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:18px 20px;
+    background:var(--nav-bg);
+    border-bottom:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  nav .mark{ color:var(--ink); text-decoration:none; }
+  nav a{ color:inherit; text-decoration:none; }
+  .nav-right{ display:flex; align-items:center; gap:14px; }
+  .theme-toggle{
+    background:none; border:1px solid var(--line); border-radius:2px;
+    cursor:pointer; padding:6px 10px;
+    color:var(--ink-dim);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+  }
+  .theme-toggle:hover{ color:var(--ink); border-color:var(--ink-faint); }
+  .back-link{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; letter-spacing:0.06em;
+    color:var(--ink-dim);
+  }
+  .back-link:hover{ color:var(--ink); }
+
+  section{ padding:44px 22px; max-width:640px; margin:0 auto; }
+
+  h2{
+    font-family:'League Spartan', sans-serif;
+    font-weight:500;
+    font-size:17px; letter-spacing:0.01em;
+    color:var(--ink);
+    margin:0 0 26px;
+    padding-bottom:10px;
+    border-bottom:1px solid var(--line);
+  }
+
+  /* TEACHING */
+  .fact-list{
+    list-style:none; margin:0; padding:0;
+    font-size:16px; line-height:1.6;
+  }
+  .fact-list li{
+    padding:14px 0;
+    border-top:1px solid var(--line);
+    color:var(--ink-dim);
+  }
+  .fact-list li:last-child{ border-bottom:1px solid var(--line); }
+  .fact-label{
+    display:block;
+    font-family:'League Spartan', sans-serif;
+    font-weight:500;
+    font-size:18px; letter-spacing:0.01em;
+    color:var(--ink);
+    margin-bottom:4px;
+  }
+
+  footer{
+    padding:30px 22px 50px; text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--ink-faint); letter-spacing:0.06em;
+  }
+
+  @media (min-width:900px){
+    section{ max-width:1040px; padding:64px 48px; }
+    nav{ padding:22px 48px; }
+    .fact-list{ font-size:17px; }
+    .fact-label{ font-size:20px; }
+  }
+</style>
+</head>
+<body>
+<div class="atmosphere"></div>
+
+<nav>
+  <a class="mark" href="index.html">R.A.</a>
+  <span class="nav-right">
+    <a class="back-link" href="index.html">&larr; Back</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Switch to day theme">Day</button>
+  </span>
+</nav>
+
+<section id="teaching">
+  <h2>Teaching</h2>
+  <ul class="fact-list">
+    <li><span class="fact-label">Co-Supervisor, MSc Thesis, 2026</span>KTH Royal Institute of Technology. "Cyber-Physical Security in Direct Data-Driven Control Systems," with student Gustaf Zachrisson, alongside supervisors Alf Isaksson (ABB) and Sribalaji Coimbatore Anand (KTH), examined by Henrik Sandberg.</li>
+    <li><span class="fact-label">Co-Supervisor (Thesis Reader), 2026</span>Massachusetts Institute of Technology, Institute for Data, Systems, and Society. "Anomaly Detection for GPS Spoofing in Maritime Cyber-Physical Systems: Filter-Based and Deep Learning Methods," M.S. in Technology and Policy by Strahinja Janjusevic, alongside Themistoklis Sapsis, under thesis supervisors Saurabh Amin and Fotini Christia.</li>
+    <li><span class="fact-label">Co-Supervisor, BSc Thesis, 2025</span>KTH Royal Institute of Technology. "Automatic PID Tuning for Wastewater Pump Station: Run Pumps Efficiently With the Press of a Button," with student Balder Jörsäter and co-advisor Victor Molnö.</li>
+    <li><span class="fact-label">Supervisor, Summer Research Internship, 2024</span>KTH Royal Institute of Technology & University of California, Berkeley. "Can Transformers Learn Kalman Filters?" with student Wentinn Liao, alongside Christos Mavridis, Henrik Sandberg, and Anant Sahai.</li>
+    <li><span class="fact-label">Teaching Assistant, Advanced Control Theory, 2021 &amp; 2022</span>KTH Royal Institute of Technology. Served twice, once each year.</li>
+    <li><span class="fact-label">Supervisor, Summer Research Internship, 2021</span>Digital Futures, KTH Royal Institute of Technology. "Security of Smart Home Sensors" with student Giorgio Sacchi.</li>
+    <li><span class="fact-label">Supervisor, MSc Thesis, 2021</span>KTH Royal Institute of Technology. "Modeling and Evaluation of Turret Control Systems for Main Battle Tanks," with student Mikael Lyth.</li>
+    <li><span class="fact-label">Supervisor, BSc Thesis, 2019</span>KTH Royal Institute of Technology. "Distributed Optimisation in Multi-Agent Systems Through Deep Reinforcement Learning" with students Andreas Eriksson &amp; Jonas Hansson, co-supervised with Mina Ferizbegovic.</li>
+    <li><span class="fact-label">Teaching Assistant, Basic Control Theory, 2018&ndash;2020</span>KTH Royal Institute of Technology. Served three times.</li>
+    <li><span class="fact-label">Teaching Assistant, Basic Control Theory, 2017&ndash;2018</span>Lund University. Served three times.</li>
+  </ul>
+</section>
+
+<footer>© Rijad Alisic. Draft build.</footer>
+
+<script>
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  const lightQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
+  function applyTheme(theme){
+    if(theme === 'light'){
+      root.setAttribute('data-theme', 'light');
+      themeToggle.textContent = 'Night';
+      themeToggle.setAttribute('aria-label', 'Switch to night theme');
+    } else {
+      root.removeAttribute('data-theme');
+      themeToggle.textContent = 'Day';
+      themeToggle.setAttribute('aria-label', 'Switch to day theme');
+    }
+  }
+  function setTheme(theme){
+    applyTheme(theme);
+    localStorage.setItem('theme', theme);
+  }
+  const savedTheme = localStorage.getItem('theme');
+  applyTheme(savedTheme || (lightQuery && lightQuery.matches ? 'light' : 'dark'));
+  themeToggle.addEventListener('click', () => {
+    setTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+  });
+  if(lightQuery){
+    lightQuery.addEventListener('change', (e) => {
+      if(!localStorage.getItem('theme')) applyTheme(e.matches ? 'light' : 'dark');
+    });
+  }
+</script>
+
+</body>
+</html>
