@@ -109,7 +109,7 @@
   }
   .menu-backdrop.open{ display:block; }
 
-  section{ padding:44px 22px; max-width:640px; margin:0 auto; }
+  section{ padding:44px 22px; max-width:640px; margin:0 auto; scroll-margin-top:85px; }
   #about{ padding-top:0; }
 
   /* HERO */
@@ -366,8 +366,8 @@
     <a href="#about">About</a>
     <a href="#news">News</a>
     <a href="#cv">Short CV</a>
-    <a href="#teaching">Teaching</a>
     <a href="#publications">Publications</a>
+    <a href="#teaching">Teaching</a>
     <a href="#projects">Side Projects</a>
     <!-- <a href="#writing">Writing</a> -->
     <a href="#contact">Contact</a>
@@ -419,6 +419,7 @@
     <li><span class="news-date">Aug 2026</span><span class="news-item">Launched this website.</span></li>
     <li><span class="news-date">Aug 2026</span><span class="news-item">Speaking at the <a href="https://sites.google.com/view/ifac-wc-2026-encrypted">IFAC 2026 Pre-Congress Workshop: Encrypted Control Workshop and Live Demonstrations</a>, August 23.</span></li>
     <li><span class="news-date">Aug 2026</span><span class="news-item">"Anomaly Detection with LWE Encrypted Control" conditionally accepted to IEEE Transactions on Automatic Control.</span></li>
+    <li><span class="news-date">Aug 2026</span><span class="news-item">Two papers, "Goodbye Innovation: Stealthy Destabilizing Sensor Attacks on Feedback Control Systems" and "SEC-Two: Secure Estimation over Two Channels," accepted to the IEEE Conference on Decision and Control (CDC).</span></li>
   </ul>
 </section>
 
@@ -436,16 +437,6 @@
   </ul>
 </section>
 
-<section id="teaching">
-  <h2>Teaching</h2>
-  <ul class="fact-list">
-    <li><span class="fact-label">Co-Supervisor, MSc Thesis, 2026</span>KTH Royal Institute of Technology. "Cyber-Physical Security in Direct Data-Driven Control Systems."</li>
-    <li><span class="fact-label">Co-Supervisor (Thesis Reader), 2026</span>Massachusetts Institute of Technology, Institute for Data, Systems, and Society. "Anomaly Detection for GPS Spoofing in Maritime Cyber-Physical Systems: Filter-Based and Deep Learning Methods," M.S. in Technology and Policy by Strahinja Janjusevic, alongside Themistoklis Sapsis, under thesis supervisors Saurabh Amin and Fotini Christia.</li>
-    <li><span class="fact-label">Co-Supervisor, BSc Thesis, 2025</span>KTH Royal Institute of Technology. "Automatic PID Tuning for Wastewater Pump Station: Run Pumps Efficiently With the Press of a Button," with student Balder Jörsäter and co-advisor Victor Molnö.</li>
-  </ul>
-  <a class="pub-link" href="teaching.html">View all teaching &rarr;</a>
-</section>
-
 <section id="publications">
   <h2>Publications</h2>
   <ul class="pub-list">
@@ -458,6 +449,18 @@
   <a class="pub-link" href="publications.html">View all publications &rarr;</a>
 </section>
 
+<section id="teaching">
+  <h2>Teaching</h2>
+  <ul class="fact-list">
+    <li><span class="fact-label">Co-Supervisor, MSc Thesis, 2026</span>KTH Royal Institute of Technology</li>
+    <li><span class="fact-label">Co-Supervisor, MSc Thesis, 2026</span>Massachusetts Institute of Technology</li>
+    <li><span class="fact-label">Co-Supervisor, BSc Thesis, 2025</span>KTH Royal Institute of Technology</li>
+    <li><span class="fact-label">Teaching Assistant, Advanced Control Theory, 2021 &amp; 2022</span>KTH Royal Institute of Technology</li>
+    <li><span class="fact-label">Teaching Assistant, Basic Control Theory, 2018&ndash;2020</span>KTH Royal Institute of Technology</li>
+  </ul>
+  <a class="pub-link" href="teaching.html">View all teaching &rarr;</a>
+</section>
+
 <section id="projects">
   <h2>Side Projects</h2>
   <ul class="fact-list">
@@ -466,6 +469,7 @@
     <li><span class="fact-label">WeighSight</span>Android app on Google Play. An application of RTS (Rauch-Tung-Striebel) smoothing meant to show the everyday value of control theory: teaching the public to see past the process and measurement noise that obscure real trends in their data, applied to simple weight tracking.</li>
     <li><span class="fact-label">F1-10 Test Bed, 2017</span>Autonomous vehicle control software from my Caltech SURF project during undergrad.</li>
     <li><span class="fact-label">Quadcopter with Artificial Intelligence, 2017</span>Lund University, Projects in Automatic Control. Drone using onboard camera and AI to autonomously follow a person. Won the class's Best Control Engineering award.</li>
+    <li><span class="fact-label">Water-Tank Lab Responsible, 2020&ndash;2022</span>KTH Royal Institute of Technology, Division of Decision and Control Systems. Maintained and ran the department's water-tank process control lab.</li>
   </ul>
 </section>
 
@@ -486,7 +490,7 @@
   </div>
 </section>
 
-<footer>© Rijad Alisic. Draft build.</footer>
+<footer>© Rijad Alisic.</footer>
 
 <script>
   const toggle = document.getElementById('menuToggle');
