@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rijadalisic.github.io/sitemap.xml
+Sitemap: https://rijadalisic.com/sitemap.xml
