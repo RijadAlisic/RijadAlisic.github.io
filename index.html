@@ -119,8 +119,8 @@
   }
   .menu-backdrop.open{ display:block; }
 
-  section{ padding:44px 22px; max-width:640px; margin:0 auto; scroll-margin-top:85px; }
-  #about{ padding-top:0; }
+  section{ padding:30px 22px; max-width:640px; margin:0 auto; scroll-margin-top:85px; }
+  #about{ padding-top:0; padding-bottom:20px; }
 
   /* HERO */
   .hero{ padding-top:40px; padding-bottom:16px; text-align:left; }
@@ -193,9 +193,12 @@
     font-size:17px; line-height:1.7; color:var(--ink);
     margin:0;
   }
-  .about-body p + p{ margin-top:1.4em; }
+  .about-body p + p{ margin-top:1em; }
   .about-body p a{ color:inherit; text-decoration:none; border-bottom:1px solid var(--ink-faint); padding-bottom:1px; }
   .about-body p a:hover{ color:var(--gold-signal); border-color:var(--gold-signal); }
+  .about-contact{ font-family:'IBM Plex Mono', monospace; font-size:14px !important; letter-spacing:0.04em; }
+  .about-contact a{ display:inline-flex; align-items:center; gap:7px; }
+  .about-contact svg{ width:15px; height:15px; flex-shrink:0; }
   .fact-list{
     list-style:none; margin:18px 0 0; padding:0;
     font-size:16px; line-height:1.6;
@@ -324,7 +327,7 @@
 
   /* ===== DESKTOP: open up, don't just center the phone layout ===== */
   @media (min-width:900px){
-    section{ max-width:1040px; padding:64px 48px; }
+    section{ max-width:1040px; padding:44px 48px; }
 
     nav{ padding:22px 48px; }
     .menu-toggle{ display:none; }
@@ -360,7 +363,7 @@
       flex:0 0 30%; max-width:320px; margin:0;
     }
 
-    #about{ padding-top:0; }
+    #about{ padding-top:0; padding-bottom:28px; }
     .about-body p{ font-size:19px; }
 
     .fact-list{ font-size:17px; }
@@ -426,8 +429,9 @@
     <figure class="about-photo">
       <img src="rijad.jpg" alt="Rijad Alisic">
     </figure>
-    <p>I'm a Knut and Alice Wallenberg Postdoctoral Fellow at MIT's Laboratory for Information and Decision Systems. My research is in automatic control: designing feedback loops for dynamic systems and studying how a system's data reveals its vulnerability to cyber attacks. I'm also the Chair of the LIDS Postdoc committee. If you are in the area and would like to meet some of MIT's postdocs and share your research, <a href="mailto:alisic@mit.edu">feel free to reach out</a>.</p>
+    <p>I'm a Knut and Alice Wallenberg Postdoctoral Fellow at MIT's Laboratory for Information and Decision Systems. My research is in automatic control: designing feedback loops for dynamic systems and studying how a system's data reveals its vulnerability to cyber attacks. I'm also the Chair of the LIDS Postdoc committee, where we host weekly lunch seminars. If you are in the area and would like to meet some of MIT's postdocs or share your research, <a href="mailto:alisic@mit.edu">feel free to reach out</a>.</p>
     <p>Outside the lab, I'm chasing <a href="https://www.strava.com/athletes/105356141" target="_blank" rel="noopener">local-legend status</a> next to various waterways, reading and writing, and doing projects that make automatic control more publicly accessible beyond academia and industry.</p>
+    <p class="about-contact"><a href="mailto:alisic@mit.edu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>alisic@mit.edu</a></p>
   </div>
 </section>
 
