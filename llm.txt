@@ -1,0 +1,19 @@
+# Rijad Alisic
+
+> Control theorist researching the cybersecurity of cyber-physical systems, focused on control and detection under learning-based and adaptive attackers, currently extending this work to nonlinear systems through differential geometry.
+
+## About
+
+Rijad Alisic is a KAW (Knut and Alice Wallenberg) Postdoctoral Research Scholar at the Massachusetts Institute of Technology's Laboratory for Information and Decision Systems (LIDS), working with Professor Saurabh Amin. His research sits at the intersection of control theory and cybersecurity: designing secure control and anomaly detection methods that remain robust against adaptive, learning-based adversaries, and extending these results from linear to nonlinear systems using differential-geometric tools.
+
+He completed his PhD at KTH Royal Institute of Technology in 2023, and has held visiting researcher positions at the University of Melbourne, Seoul National University of Science and Technology, and Lund University. At MIT, he collaborates closely with the MIT Maritime Consortium on maritime cybersecurity research.
+
+## Background
+
+His postdoctoral research at KTH (2024-2025) was funded by WASP (the Wallenberg AI, Autonomous Systems and Software Program), through the WASP NEST project DYNACON (Dynamic Attack detection and mitigation for seCure autONomy), a joint effort with Linköping University and Lund University. His PhD research was funded by SSF CLAS (Cyber-security for Learning and Control Systems), a project of the Swedish Foundation for Strategic Research at KTH. He was also part of Digital Futures, a KTH-based research center on digitalization.
+
+## Key pages
+
+- [Home](https://rijadalisic.com/): Research overview and background
+- [Publications](https://rijadalisic.com/publications.html): Peer-reviewed papers on control-theoretic cybersecurity, adaptive and learning-based attackers, and anomaly detection
+- [Teaching](https://rijadalisic.com/teaching.html): Courses taught and supervised
