@@ -4,7 +4,7 @@
 
 ## About
 
-Rijad Alisic is a KAW (Knut and Alice Wallenberg) Postdoctoral Research Scholar at the Massachusetts Institute of Technology's Laboratory for Information and Decision Systems (LIDS), working with Professor Saurabh Amin. His research sits at the intersection of control theory and cybersecurity: designing secure control and anomaly detection methods that remain robust against adaptive, learning-based adversaries, and extending these results from linear to nonlinear systems using differential-geometric tools.
+Rijad Alisic is a KAW (Knut and Alice Wallenberg) Postdoctoral Research Scholar at the Massachusetts Institute of Technology's Laboratory for Information and Decision Systems (LIDS), working with Professor Saurabh Amin. His research sits at the intersection of control theory and cybersecurity: designing secure control and anomaly detection methods that remain robust against adaptive, learning-based adversaries, and extending these results from linear to nonlinear systems using differential-geometric tools. He also has a keen interest in security problems that are implementation-derived, arising from how systems are actually built and deployed rather than from idealized theoretical models, as well as in security and detection through post-quantum encryption.
 
 He completed his PhD at KTH Royal Institute of Technology in 2023, and has held visiting researcher positions at the University of Melbourne, Seoul National University of Science and Technology, and Lund University. At MIT, he collaborates closely with the MIT Maritime Consortium on maritime cybersecurity research.
 
