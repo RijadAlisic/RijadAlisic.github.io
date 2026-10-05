@@ -557,6 +557,24 @@
   }
 </script>
 
+<script>
+  // Count clicks on the CV, Publications and Teaching links by pinging a path
+  // that Cloudflare logs. No URL changes, nothing sent to a third party.
+  (function(){
+    var targets = [['cv_website.pdf', 'cv'], ['publications.html', 'publications'], ['teaching.html', 'teaching']];
+    function ping(e){
+      var a = e.target.closest ? e.target.closest('a[href]') : null;
+      if(!a || !navigator.sendBeacon) return;
+      var href = a.getAttribute('href');
+      for(var i = 0; i < targets.length; i++){
+        if(href.indexOf(targets[i][0]) === 0){ navigator.sendBeacon('/_c/' + targets[i][1]); return; }
+      }
+    }
+    document.addEventListener('click', ping);
+    document.addEventListener('auxclick', ping);
+  })();
+</script>
+
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1705a97ce4dc4eeab9d9ba615affe531"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
