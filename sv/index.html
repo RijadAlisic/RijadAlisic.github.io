@@ -73,6 +73,9 @@
   .nav-icon{ display:flex; align-items:center; color:var(--ink-dim); }
   .nav-icon:hover{ color:var(--ink); }
   .nav-icon svg{ width:16px; height:16px; }
+  .nav-flag svg{ width:22px; height:14px; border-radius:2px; box-shadow:0 0 0 1px rgba(128,128,128,0.35); }
+  .nav-flag{ opacity:0.9; }
+  .nav-flag:hover{ opacity:1; }
   .theme-toggle{
     background:none; border:1px solid var(--line); border-radius:2px;
     cursor:pointer; padding:6px 10px;
@@ -204,20 +207,25 @@
   .about-contact a{ display:inline-flex; align-items:center; gap:7px; }
   .about-contact svg{ width:15px; height:15px; flex-shrink:0; }
   .sr-only{ position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
-  .about-more{ margin-top:14px; }
+  .about-body{ position:relative; }
+  .about-more-float{ float:right; width:38px; height:38px; margin:2px 0 6px 14px; }
   .about-more summary{
+    position:absolute; top:2px; right:0;
+    display:block; width:38px; height:38px;
     list-style:none; cursor:pointer;
-    display:inline-flex; align-items:center; justify-content:center;
-    width:28px; height:28px;
-    border:1px solid var(--line); border-radius:2px;
-    color:var(--ink-dim);
-    font-family:'IBM Plex Mono', monospace; font-size:16px; line-height:1;
+    border:2px solid var(--ink); border-radius:3px;
+    color:var(--ink);
   }
   .about-more summary::-webkit-details-marker{ display:none; }
-  .about-more summary::before{ content:"+"; }
-  .about-more[open] summary::before{ content:"\2212"; }
-  .about-more summary:hover, .about-more summary:focus-visible{ color:var(--ink); border-color:var(--ink-faint); }
-  .about-more summary:focus-visible{ outline:2px solid var(--gold-signal); outline-offset:2px; }
+  .about-more summary::before, .about-more summary::after{
+    content:""; position:absolute; left:50%; top:50%;
+    background:currentColor; transform:translate(-50%,-50%);
+  }
+  .about-more summary::before{ width:16px; height:3px; }
+  .about-more summary::after{ width:3px; height:16px; }
+  .about-more[open] summary::after{ display:none; }
+  .about-more summary:hover{ color:var(--gold-signal); }
+  .about-more summary:focus-visible{ outline:2px solid var(--gold-signal); outline-offset:3px; }
   .about-more-body{ margin-top:18px; }
   .about-more-body p + p{ margin-top:1em; }
   .about-more-body ul{ margin:1em 0 0; padding-left:1.2em; font-size:17px; line-height:1.7; color:var(--ink); }
@@ -398,12 +406,6 @@
     .pub-title, .news-item{ font-size:19px; }
   }
   /* SWEDISH PAGE */
-  .lang-flag{
-    position:fixed; right:16px; bottom:16px; z-index:10;
-    width:30px; height:19px; border-radius:2px;
-    box-shadow:0 0 0 1px rgba(128,128,128,0.35);
-    opacity:0.9; pointer-events:none;
-  }
   .hero-identity{ margin-bottom:0; }
 </style>
 </head>
@@ -415,15 +417,16 @@
   <span class="links" id="navLinks">
     <button class="menu-close" id="menuClose" aria-label="Close menu">&times;</button>
     <a href="#about">About</a>
-    <a href="/#news">News</a>
-    <a href="/#cv">CV</a>
-    <a href="/publications.html">Publications</a>
-    <a href="/teaching.html">Teaching</a>
-    <a href="/#projects">Side Projects</a>
+    <a href="/#news" data-track="sv-news">News</a>
+    <a href="/#cv" data-track="sv-cv">CV</a>
+    <a href="/publications.html" data-track="sv-publications">Publications</a>
+    <a href="/teaching.html" data-track="sv-teaching">Teaching</a>
+    <a href="/#projects" data-track="sv-projects">Side Projects</a>
     <!-- <a href="#writing">Writing</a> -->
     <a href="#contact">Contact</a>
   </span>
   <span class="nav-right">
+    <a href="/" class="nav-icon nav-flag" hreflang="en" lang="en" aria-label="English" title="English" data-track="lang-en"><svg viewBox="0 0 60 30" aria-hidden="true"><clipPath id="ukS"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="ukT"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath><g clip-path="url(#ukS)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#ukT)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg></a>
     <a href="https://scholar.google.com/citations?user=d3Yc2nQAAAAJ&hl=sv" target="_blank" rel="noopener" class="nav-icon" aria-label="Google Scholar"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.24 14.978 9.5 12 9.5c-2.977 0-5.548 1.74-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg></a>
     <a href="https://github.com/RijadAlisic" target="_blank" rel="noopener" class="nav-icon" aria-label="GitHub"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
     <button class="theme-toggle" id="themeToggle" aria-label="Switch to day theme">Day</button>
@@ -451,7 +454,7 @@
     <figure class="about-photo">
       <img src="/rijad.jpg" alt="Rijad Alisic">
     </figure>
-    <p>Jag är Knut och Alice Wallenberg Postdoctoral Fellow vid MIT:s Laboratory for Information and Decision Systems. Min forskning handlar om reglerteknik: att utforma återkopplingsslingor för dynamiska system och att studera hur ett systems data avslöjar dess sårbarhet för cyberattacker. Jag är också ordförande för <a href="https://sites.mit.edu/lidspostdoc/" target="_blank" rel="noopener">LIDS Postdoc Committee</a>, där vi arrangerar veckovisa lunchseminarier. Om du befinner dig i trakten och vill träffa några av MIT:s postdoktorer eller presentera din forskning, <a href="mailto:alisic@mit.edu">hör gärna av dig</a>.</p>
+    <p>Jag är Knut och Alice Wallenberg Postdoctoral Fellow vid MIT:s Laboratory for Information and Decision Systems. Min forskning handlar om reglerteknik: att utforma återkopplingsslingor för dynamiska system och att studera hur ett systems data avslöjar dess sårbarhet för cyberattacker. Jag är också ordförande för <a href="https://sites.mit.edu/lidspostdoc/" target="_blank" rel="noopener">LIDS Postdoc Committee</a>, där vi arrangerar veckovisa seminarier. Om du befinner dig i trakten och vill träffa några av MIT:s postdoktorer eller presentera din forskning, <a href="mailto:alisic@mit.edu">hör gärna av dig</a>.</p>
     <p>Utanför labbet jagar jag <a href="https://www.strava.com/athletes/105356141" target="_blank" rel="noopener">lokal legendstatus</a> kring vattendrag i Tomelilla, Stockholm och Boston. Jag läser och skriver också, och driver projekt som gör reglerteknik mer tillgänglig utanför akademin och industrin.</p>
     <p class="about-contact"><a href="mailto:alisic@mit.edu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>alisic@mit.edu</a></p>
     <div class="about-more-body">
@@ -479,8 +482,6 @@
 </section>
 
 <footer>© Rijad Alisic.</footer>
-
-<svg class="lang-flag" viewBox="0 0 16 10" role="img" aria-label="Svenska" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="10" fill="#006AA7"/><rect x="5" width="2" height="10" fill="#FECC02"/><rect y="4" width="16" height="2" fill="#FECC02"/></svg>
 
 <script>
   const toggle = document.getElementById('menuToggle');
@@ -528,6 +529,26 @@
       if(!localStorage.getItem('theme')) applyTheme(e.matches ? 'light' : 'dark');
     });
   }
+</script>
+
+<script>
+  // Count clicks on the CV, Publications, Teaching and language links by pinging a path
+  // that Cloudflare logs. No URL changes, nothing sent to a third party.
+  (function(){
+    var targets = [['cv_website.pdf', 'cv'], ['publications.html', 'publications'], ['teaching.html', 'teaching']];
+    function ping(e){
+      var a = e.target.closest ? e.target.closest('a[href]') : null;
+      if(!a || !navigator.sendBeacon) return;
+      var t = a.getAttribute('data-track');
+      if(t){ navigator.sendBeacon('/_c/' + t); return; }
+      var href = a.getAttribute('href');
+      for(var i = 0; i < targets.length; i++){
+        if(href.indexOf(targets[i][0]) === 0){ navigator.sendBeacon('/_c/' + targets[i][1]); return; }
+      }
+    }
+    document.addEventListener('click', ping);
+    document.addEventListener('auxclick', ping);
+  })();
 </script>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1705a97ce4dc4eeab9d9ba615affe531"}'></script><!-- End Cloudflare Web Analytics -->
