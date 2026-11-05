@@ -7,6 +7,9 @@
 <title>Rijad Alisic · Researcher in Control of Dynamic Systems</title>
 <meta name="description" content="Rijad Alisic, Wallenberg Postdoctoral Fellow at the Massachusetts Institute of Technology, researching automatic control, cyber-physical systems, and privacy.">
 <link rel="canonical" href="https://rijadalisic.com/">
+<link rel="alternate" hreflang="en" href="https://rijadalisic.com/">
+<link rel="alternate" hreflang="sv" href="https://rijadalisic.com/sv/">
+<link rel="alternate" hreflang="x-default" href="https://rijadalisic.com/">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -200,6 +203,26 @@
   .about-contact{ font-family:'IBM Plex Mono', monospace; font-size:14px !important; letter-spacing:0.04em; }
   .about-contact a{ display:inline-flex; align-items:center; gap:7px; }
   .about-contact svg{ width:15px; height:15px; flex-shrink:0; }
+  .sr-only{ position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  .about-more{ margin-top:14px; }
+  .about-more summary{
+    list-style:none; cursor:pointer;
+    display:inline-flex; align-items:center; justify-content:center;
+    width:28px; height:28px;
+    border:1px solid var(--line); border-radius:2px;
+    color:var(--ink-dim);
+    font-family:'IBM Plex Mono', monospace; font-size:16px; line-height:1;
+  }
+  .about-more summary::-webkit-details-marker{ display:none; }
+  .about-more summary::before{ content:"+"; }
+  .about-more[open] summary::before{ content:"\2212"; }
+  .about-more summary:hover, .about-more summary:focus-visible{ color:var(--ink); border-color:var(--ink-faint); }
+  .about-more summary:focus-visible{ outline:2px solid var(--gold-signal); outline-offset:2px; }
+  .about-more-body{ margin-top:18px; }
+  .about-more-body p + p{ margin-top:1em; }
+  .about-more-body ul{ margin:1em 0 0; padding-left:1.2em; font-size:17px; line-height:1.7; color:var(--ink); }
+  .about-more-body li + li{ margin-top:0.5em; }
+  .about-more-body ul + p{ margin-top:1em; }
   .fact-list{
     list-style:none; margin:18px 0 0; padding:0;
     font-size:16px; line-height:1.6;
@@ -366,6 +389,7 @@
 
     #about{ padding-top:0; padding-bottom:28px; }
     .about-body p{ font-size:19px; }
+    .about-more-body ul{ font-size:19px; }
 
     .fact-list{ font-size:17px; }
     .fact-label{ font-size:20px; }
@@ -433,6 +457,21 @@
     <p>I'm a Knut and Alice Wallenberg Postdoctoral Fellow at MIT's Laboratory for Information and Decision Systems. My research is in automatic control: designing feedback loops for dynamic systems and studying how a system's data reveals its vulnerability to cyber attacks. I'm also the Chair of the <a href="https://sites.mit.edu/lidspostdoc/" target="_blank" rel="noopener">LIDS Postdoc Committee</a>, where we host weekly lunch seminars. If you are in the area and would like to meet some of MIT's postdocs or share your research, <a href="mailto:alisic@mit.edu">feel free to reach out</a>.</p>
     <p>Outside the lab, I'm chasing <a href="https://www.strava.com/athletes/105356141" target="_blank" rel="noopener">local-legend status</a> next to various waterways, reading and writing, and doing projects that make automatic control more publicly accessible beyond academia and industry.</p>
     <p class="about-contact"><a href="mailto:alisic@mit.edu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>alisic@mit.edu</a></p>
+    <details class="about-more">
+      <summary><span class="sr-only">More about my work</span></summary>
+      <div class="about-more-body">
+        <p>Many of the systems we depend on, such as pumps, cooling systems and ships, are run by controllers in a closed feedback loop: sensors measure, a controller decides, actuators act. Most security work tries to keep attackers out of the IT systems around that loop. That is a race that keeps being lost, through a missed update, a sloppy configuration, an exposed device from a third-party vendor, or a supply-chain attack.</p>
+        <p>My work starts from a different assumption: the IT layer will sometimes fail, so the system should not depend on it alone. A pump, a freezer or a ship obeys dynamics and physics that no attacker can patch away. By building the dynamics and physics into the controller and the detector, we limit what an attacker can do without being noticed, even with full access to the software.</p>
+        <p>The attacker I study is a learning one. With AI and machine learning, an attacker can observe a system, learn how it behaves from data, and adapt its attack to avoid detection. My work asks two questions: how can such an attacker stay hidden while doing damage, and how can a defender notice anyway, all while the attacker learns and adapts before, during, and after its attacks?</p>
+        <p>Concretely, I work on:</p>
+        <ul>
+          <li><strong>Learning-based attacks and detection.</strong> Building detectors that rely on dynamics and physics rather than on a clean IT perimeter, against attackers that learn and adapt.</li>
+          <li><strong>Encrypted control.</strong> Running controllers on encrypted data, and detecting anomalies without decrypting the signals.</li>
+          <li><strong>Robotic systems.</strong> Detecting spoofing and intrusions in robotic systems, such as GPS spoofing and attacks on onboard networks. We have focused on maritime systems, in collaboration with the MIT Maritime Consortium.</li>
+        </ul>
+        <p>I'm currently extending this work from linear to nonlinear systems using differential geometry.</p>
+      </div>
+    </details>
   </div>
 </section>
 

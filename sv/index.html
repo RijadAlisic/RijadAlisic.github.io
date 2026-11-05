@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="gz-7iWEZlTH7FY8Q1fePslLUt9CgQFZggAUPoWvHLL4" />
+<title>Rijad Alisic, postdoktor vid MIT | Cybersäkerhet, AI och styrsystem</title>
+<meta name="description" content="Rijad Alisic forskar vid MIT om cybersäkerhet för styrsystem, robotsystem och fartyg, och om hur AI-drivna angripare kan upptäckas med hjälp av dynamik och fysik.">
+<link rel="canonical" href="https://rijadalisic.com/sv/">
+<link rel="alternate" hreflang="en" href="https://rijadalisic.com/">
+<link rel="alternate" hreflang="sv" href="https://rijadalisic.com/sv/">
+<link rel="alternate" hreflang="x-default" href="https://rijadalisic.com/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&family=League+Spartan:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#0B0A0C;
+    --ink:#EDE9E4;
+    --ink-dim:#A39D97;
+    --ink-faint:#8F8983;
+    --line:#221D1F;
+    --maroon-glow:rgba(140,42,50,0.30);
+    --maroon-glow-soft:rgba(90,26,32,0.14);
+    --gold-signal:#C98F3A;
+    --nav-bg:rgba(11,10,12,0.92);
+  }
+  :root[data-theme="light"]{
+    --paper:#F4F0EA;
+    --ink:#211D1B;
+    --ink-dim:#5C5650;
+    --ink-faint:#6B6459;
+    --line:#DED5C9;
+    --maroon-glow:rgba(140,42,50,0.14);
+    --maroon-glow-soft:rgba(90,26,32,0.07);
+    --gold-signal:#96601E;
+    --nav-bg:rgba(244,240,234,0.92);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:400;
+    transition:background 200ms ease, color 200ms ease;
+  }
+  .atmosphere{
+    position:fixed; inset:0; z-index:-1;
+    background:
+      radial-gradient(ellipse 70% 40% at 80% 6%, var(--maroon-glow), transparent 60%),
+      radial-gradient(ellipse 80% 50% at 10% 90%, var(--maroon-glow-soft), transparent 65%);
+  }
+
+  nav{
+    position:sticky; top:0; z-index:25;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:18px 20px;
+    background:var(--nav-bg);
+    border-bottom:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  nav .mark{ color:var(--ink); display:flex; align-items:center; text-decoration:none; }
+  nav .mark svg{ width:18px; height:18px; }
+  nav .links{ display:flex; gap:16px; color:var(--ink-dim); }
+  nav a{ color:inherit; text-decoration:none; }
+  .nav-right{ display:flex; align-items:center; gap:14px; }
+  .nav-icon{ display:flex; align-items:center; color:var(--ink-dim); }
+  .nav-icon:hover{ color:var(--ink); }
+  .nav-icon svg{ width:16px; height:16px; }
+  .theme-toggle{
+    background:none; border:1px solid var(--line); border-radius:2px;
+    cursor:pointer; padding:6px 10px;
+    color:var(--ink-dim);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+  }
+  .theme-toggle:hover{ color:var(--ink); border-color:var(--ink-faint); }
+  .menu-toggle{
+    display:flex; flex-direction:column; justify-content:center; gap:5px;
+    width:32px; height:32px;
+    background:none; border:none; cursor:pointer; padding:0;
+  }
+  .menu-toggle span{
+    display:block; height:1px; width:100%; background:var(--ink);
+  }
+  nav .links{
+    display:none;
+    position:fixed;
+    top:0; right:0;
+    width:min(78vw, 320px); height:100vh;
+    flex-direction:column;
+    gap:0;
+    background:var(--paper);
+    border-left:1px solid var(--line);
+    padding:80px 0 0;
+    z-index:20;
+  }
+  nav .links.open{ display:flex; }
+  nav .links a{
+    padding:20px 28px;
+    font-size:15px;
+    word-spacing:-0.2em;
+    border-bottom:1px solid var(--line);
+  }
+  .menu-close{
+    align-self:flex-end;
+    margin:0 20px 20px 0;
+    width:32px; height:32px;
+    background:none; border:none; cursor:pointer;
+    color:var(--ink); font-size:20px; line-height:1;
+  }
+  .menu-backdrop{
+    display:none;
+    position:fixed; inset:0;
+    background:rgba(0,0,0,0.5);
+    z-index:15;
+  }
+  .menu-backdrop.open{ display:block; }
+
+  section{ padding:30px 22px; max-width:640px; margin:0 auto; scroll-margin-top:85px; }
+  #about{ padding-top:0; padding-bottom:20px; }
+
+  /* HERO */
+  .hero{ padding-top:40px; padding-bottom:16px; text-align:left; }
+  .hero-identity{ text-align:center; margin-bottom:36px; }
+  .hero-pitch{ text-align:left; max-width:480px; margin:0 auto; }
+  .name{
+    font-family:'League Spartan', sans-serif;
+    font-weight:500;
+    font-size:clamp(38px, 11vw, 60px);
+    margin:0 0 6px;
+    letter-spacing:0.01em;
+  }
+  .title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:15px; letter-spacing:0.06em;
+    color:var(--ink-dim);
+    margin:0;
+  }
+
+  h2{
+    font-family:'League Spartan', sans-serif;
+    font-weight:500;
+    font-size:17px; letter-spacing:0.01em;
+    color:var(--ink);
+    margin:0 0 26px;
+    padding-bottom:10px;
+    border-bottom:1px solid var(--line);
+  }
+
+  /* ABOUT */
+  .wheel-line{
+    font-family:'League Spartan', sans-serif;
+    font-weight:400;
+    font-size:clamp(18px, 4.6vw, 21px);
+    line-height:1.6;
+    margin:0 auto 4px;
+    max-width:480px;
+    text-align:center;
+  }
+  .wheel-static{ }
+  .wheel{
+    display:inline-block;
+    vertical-align:bottom;
+    width:fit-content;
+    max-width:100%;
+    height:1.4em;
+    overflow:hidden;
+  }
+  .wheel-track{
+    display:flex; flex-direction:column;
+    align-items:center;
+    animation:rotateWheel 9s ease-in-out infinite;
+  }
+  .wheel-track span{
+    height:1.4em; line-height:1.4em;
+    color:var(--gold-signal);
+    font-weight:500;
+    width:fit-content;
+    white-space:nowrap;
+    border-bottom:1px solid var(--ink-faint);
+    padding-bottom:1px;
+  }
+  @keyframes rotateWheel{
+    0%, 28%   { transform:translateY(0); }
+    33%, 61%  { transform:translateY(-1.4em); }
+    66%, 94%  { transform:translateY(-2.8em); }
+    100%      { transform:translateY(-4.2em); }
+  }
+  .about-body p{
+    font-size:17px; line-height:1.7; color:var(--ink);
+    margin:0;
+  }
+  .about-body p + p{ margin-top:1em; }
+  .about-body p a{ color:inherit; text-decoration:none; border-bottom:1px solid var(--ink-faint); padding-bottom:1px; }
+  .about-body p a:hover{ color:var(--gold-signal); border-color:var(--gold-signal); }
+  .about-contact{ font-family:'IBM Plex Mono', monospace; font-size:14px !important; letter-spacing:0.04em; }
+  .about-contact a{ display:inline-flex; align-items:center; gap:7px; }
+  .about-contact svg{ width:15px; height:15px; flex-shrink:0; }
+  .sr-only{ position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  .about-more{ margin-top:14px; }
+  .about-more summary{
+    list-style:none; cursor:pointer;
+    display:inline-flex; align-items:center; justify-content:center;
+    width:28px; height:28px;
+    border:1px solid var(--line); border-radius:2px;
+    color:var(--ink-dim);
+    font-family:'IBM Plex Mono', monospace; font-size:16px; line-height:1;
+  }
+  .about-more summary::-webkit-details-marker{ display:none; }
+  .about-more summary::before{ content:"+"; }
+  .about-more[open] summary::before{ content:"\2212"; }
+  .about-more summary:hover, .about-more summary:focus-visible{ color:var(--ink); border-color:var(--ink-faint); }
+  .about-more summary:focus-visible{ outline:2px solid var(--gold-signal); outline-offset:2px; }
+  .about-more-body{ margin-top:18px; }
+  .about-more-body p + p{ margin-top:1em; }
+  .about-more-body ul{ margin:1em 0 0; padding-left:1.2em; font-size:17px; line-height:1.7; color:var(--ink); }
+  .about-more-body li + li{ margin-top:0.5em; }
+  .about-more-body ul + p{ margin-top:1em; }
+  .fact-list{
+    list-style:none; margin:18px 0 0; padding:0;
+    font-size:16px; line-height:1.6;
+  }
+  .fact-list li{
+    padding:12px 0;
+    border-top:1px solid var(--line);
+    color:var(--ink-dim);
+  }
+  .fact-list li:last-child{ border-bottom:1px solid var(--line); }
+  .fact-label{
+    display:block;
+    font-family:'League Spartan', sans-serif;
+    font-weight:500;
+    font-size:18px; letter-spacing:0.01em;
+    color:var(--ink);
+    margin-bottom:4px;
+  }
+  .hero-photo{
+    margin:28px auto 0;
+    width:150px;
+  }
+  .hero-photo img{
+    display:block;
+    width:100%; aspect-ratio:4/5; object-fit:cover;
+    border-radius:4px;
+    background:linear-gradient(160deg, rgba(140,42,50,0.15), rgba(11,10,12,0.4));
+  }
+  .about-photo{ display:none; }
+
+  @media (max-width:899px){
+    .hero-photo{ display:none; }
+    .about-body{ display:flow-root; }
+    .about-photo{
+      display:block;
+      float:left;
+      width:120px;
+      margin:2px 18px 12px 0;
+    }
+    .about-photo img{
+      display:block;
+      width:100%; aspect-ratio:4/5; object-fit:cover;
+      border-radius:4px;
+      background:linear-gradient(160deg, rgba(140,42,50,0.15), rgba(11,10,12,0.4));
+    }
+  }
+
+  /* PUBLICATIONS */
+  .pub-list, .news-list{ list-style:none; margin:0; padding:0; }
+  .pub-list li, .news-list li{
+    display:flex; gap:14px;
+    padding:14px 0;
+    border-top:1px solid var(--line);
+    font-size:15px;
+  }
+  .pub-list li:last-child, .news-list li:last-child{ border-bottom:1px solid var(--line); }
+  .pub-year, .news-date{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:500;
+    color:var(--ink-faint);
+    flex:0 0 40px;
+  }
+  .news-date{ flex-basis:72px; }
+  .pub-main{ flex:1; }
+  .pub-title, .news-item{ font-size:17px; color:var(--ink); line-height:1.5; }
+  .news-item a, .pub-title a{ color:inherit; text-decoration:none; border-bottom:1px solid var(--ink-faint); padding-bottom:1px; }
+  .news-item a:hover, .pub-title a:hover{ color:var(--gold-signal); border-color:var(--gold-signal); }
+  .pub-tags{
+    display:flex; flex-wrap:wrap; gap:6px;
+    margin-top:6px;
+  }
+  .pub-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:0.03em;
+    color:var(--ink-faint);
+    border:1px solid var(--line);
+    padding:3px 8px;
+    border-radius:2px;
+  }
+  .pub-authors{
+    font-size:13px; color:var(--ink-dim);
+    margin-top:6px;
+  }
+  .pub-authors strong{ color:var(--ink); font-weight:500; }
+  .pub-note, .news-note{
+    margin-top:16px; font-size:13px; color:var(--ink-faint);
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .pub-link{
+    display:inline-block;
+    margin-top:20px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px; letter-spacing:0.04em;
+    color:var(--ink); text-decoration:none;
+    border-bottom:1px solid var(--ink-faint);
+    padding-bottom:1px;
+  }
+  .pub-link:hover{ color:var(--gold-signal); border-color:var(--gold-signal); }
+
+  /* WRITING */
+  .writing-note{
+    font-size:16px; color:var(--ink-dim); line-height:1.7;
+  }
+
+  /* CONTACT */
+  .contact-links{
+    display:flex; flex-wrap:wrap; align-items:center; gap:12px 20px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:16px; letter-spacing:0.04em;
+  }
+  .contact-links span{ color:var(--ink-dim); }
+  .contact-links a{
+    display:inline-flex; align-items:center; gap:8px;
+    color:var(--ink); text-decoration:none;
+    border-bottom:1px solid var(--ink-faint);
+    padding-bottom:1px;
+  }
+  .contact-links a:hover{ color:var(--gold-signal); border-color:var(--gold-signal); }
+  .contact-links svg{ width:22px; height:22px; flex-shrink:0; }
+
+  footer{
+    padding:30px 22px 50px; text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--ink-faint); letter-spacing:0.06em;
+  }
+
+  /* ===== DESKTOP: open up, don't just center the phone layout ===== */
+  @media (min-width:900px){
+    section{ max-width:1040px; padding:44px 48px; }
+
+    nav{ padding:22px 48px; }
+    .menu-toggle{ display:none; }
+    .menu-close{ display:none; }
+    .menu-backdrop{ display:none !important; }
+    nav .links{
+      display:flex;
+      position:static;
+      width:auto; height:auto;
+      flex-direction:row;
+      gap:16px;
+      background:none;
+      border-left:none;
+      padding:0;
+    }
+    nav .links a{
+      padding:0;
+      font-size:13px;
+      word-spacing:-0.2em;
+      border-bottom:none;
+    }
+
+    .hero{
+      display:flex; align-items:center; gap:64px;
+      padding-top:64px; padding-bottom:24px;
+    }
+    .hero-copy{ flex:1; min-width:0; }
+    .hero-identity{ text-align:left; margin-bottom:28px; }
+    .name{ font-size:clamp(56px, 6vw, 84px); }
+    .title{ font-size:17px; }
+    .wheel-line{ font-size:23px; }
+    .hero-photo{
+      flex:0 0 30%; max-width:320px; margin:0;
+    }
+
+    #about{ padding-top:0; padding-bottom:28px; }
+    .about-body p{ font-size:19px; }
+    .about-more-body ul{ font-size:19px; }
+
+    .fact-list{ font-size:17px; }
+    .fact-label{ font-size:20px; }
+
+    .pub-list li, .news-list li{ font-size:16px; }
+    .pub-title, .news-item{ font-size:19px; }
+  }
+  /* SWEDISH PAGE */
+  .lang-flag{
+    position:fixed; right:16px; bottom:16px; z-index:10;
+    width:30px; height:19px; border-radius:2px;
+    box-shadow:0 0 0 1px rgba(128,128,128,0.35);
+    opacity:0.9; pointer-events:none;
+  }
+  .hero-identity{ margin-bottom:0; }
+</style>
+</head>
+<body>
+<div class="atmosphere"></div>
+
+<nav>
+  <a class="mark" href="#" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></a>
+  <span class="links" id="navLinks">
+    <button class="menu-close" id="menuClose" aria-label="Close menu">&times;</button>
+    <a href="#about">About</a>
+    <a href="/#news">News</a>
+    <a href="/#cv">CV</a>
+    <a href="/publications.html">Publications</a>
+    <a href="/teaching.html">Teaching</a>
+    <a href="/#projects">Side Projects</a>
+    <!-- <a href="#writing">Writing</a> -->
+    <a href="#contact">Contact</a>
+  </span>
+  <span class="nav-right">
+    <a href="https://scholar.google.com/citations?user=d3Yc2nQAAAAJ&hl=sv" target="_blank" rel="noopener" class="nav-icon" aria-label="Google Scholar"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.24 14.978 9.5 12 9.5c-2.977 0-5.548 1.74-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg></a>
+    <a href="https://github.com/RijadAlisic" target="_blank" rel="noopener" class="nav-icon" aria-label="GitHub"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Switch to day theme">Day</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </span>
+</nav>
+<div class="menu-backdrop" id="menuBackdrop"></div>
+
+<section class="hero">
+  <div class="hero-copy">
+    <div class="hero-identity">
+      <h1 class="name">Rijad Alisic</h1>
+      <p class="title">Postdoktor vid MIT. Cybersäkerhet, AI och styrsystem.</p>
+    </div>
+  </div>
+  <figure class="hero-photo">
+    <img src="/rijad.jpg" alt="Rijad Alisic">
+  </figure>
+</section>
+
+<section id="about">
+  <div class="about-body">
+    <figure class="about-photo">
+      <img src="/rijad.jpg" alt="Rijad Alisic">
+    </figure>
+    <p>Jag är Knut och Alice Wallenberg Postdoctoral Fellow vid MIT:s Laboratory for Information and Decision Systems. Min forskning handlar om reglerteknik: att utforma återkopplingsslingor för dynamiska system och att studera hur ett systems data avslöjar dess sårbarhet för cyberattacker. Jag är också ordförande för <a href="https://sites.mit.edu/lidspostdoc/" target="_blank" rel="noopener">LIDS Postdoc Committee</a>, där vi arrangerar veckovisa lunchseminarier. Om du befinner dig i trakten och vill träffa några av MIT:s postdoktorer eller presentera din forskning, <a href="mailto:alisic@mit.edu">hör gärna av dig</a>.</p>
+    <p>Utanför labbet jagar jag <a href="https://www.strava.com/athletes/105356141" target="_blank" rel="noopener">lokal legendstatus</a> kring vattendrag i Tomelilla, Stockholm och Boston. Jag läser och skriver också, och driver projekt som gör reglerteknik mer tillgänglig utanför akademin och industrin.</p>
+    <p class="about-contact"><a href="mailto:alisic@mit.edu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>alisic@mit.edu</a></p>
+    <div class="about-more-body">
+      <p>Många av de system vi är beroende av, som pumpar, kylsystem och fartyg, styrs av regulatorer i en sluten återkopplingsslinga: sensorer mäter, en regulator bestämmer, ställdon agerar. Det mesta av cybersäkerhetsarbetet går ut på att hålla angripare borta från IT-systemen runt slingan. Det är ett kapplöpningslopp som hela tiden förloras, genom en missad uppdatering, en slarvig konfiguration, en exponerad enhet från en tredjepartsleverantör eller en attack i leveranskedjan.</p>
+      <p>Min forskning inom cybersäkerhet utgår från ett annat antagande: IT-lagret kommer ibland att fallera, så systemet bör inte förlita sig enbart på det. En pump, ett kylsystem eller ett fartyg följer dynamik och fysik som ingen angripare kan patcha bort. Genom att bygga in dynamiken och fysiken i regulatorn och detektorn begränsar vi vad en angripare kan göra utan att bli upptäckt, även med full tillgång till mjukvaran.</p>
+      <p>Angriparen jag studerar är en lärande angripare. Med AI och maskininlärning kan en angripare observera ett system, lära sig hur det beter sig från data och anpassa sin cyberattack för att undvika upptäckt. Mitt arbete ställer två frågor: hur kan en sådan angripare förbli dold medan den gör skada, och hur kan en försvarare ändå upptäcka den, samtidigt som angriparen lär sig och anpassar sig före, under och efter sina attacker?</p>
+      <p>Konkret arbetar jag med:</p>
+      <ul>
+        <li><strong>Lärande attacker och detektion.</strong> Att bygga detektorer som förlitar sig på dynamik och fysik snarare än på ett tätt IT-skal, mot angripare som lär sig och anpassar sig.</li>
+        <li><strong>Krypterad reglering.</strong> Att köra regulatorer på krypterad data, och upptäcka anomalier utan att dekryptera signalerna.</li>
+        <li><strong>Robotsystem.</strong> Att upptäcka spoofing och intrång i robotsystem, till exempel GPS-spoofing och attacker mot nätverk ombord. Vi har fokuserat på maritima system, i samarbete med MIT Maritime Consortium.</li>
+      </ul>
+      <p>Just nu utvidgar jag arbetet från linjära till olinjära system med hjälp av differentialgeometri.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="contact-links">
+    <a href="mailto:alisic@mit.edu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>alisic@mit.edu</a><span>·</span>
+    <a href="https://www.linkedin.com/in/rijad-alisic/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 .02-4.12 2.06 2.06 0 0 1-.02 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a><span>·</span>
+    <a href="https://www.strava.com/athletes/105356141" target="_blank" rel="noopener" aria-label="Strava"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg></a>
+  </div>
+</section>
+
+<footer>© Rijad Alisic.</footer>
+
+<svg class="lang-flag" viewBox="0 0 16 10" role="img" aria-label="Svenska" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="10" fill="#006AA7"/><rect x="5" width="2" height="10" fill="#FECC02"/><rect y="4" width="16" height="2" fill="#FECC02"/></svg>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const close = document.getElementById('menuClose');
+  const backdrop = document.getElementById('menuBackdrop');
+  const links = document.getElementById('navLinks');
+
+  function openMenu(){ links.classList.add('open'); backdrop.classList.add('open'); }
+  function closeMenu(){ links.classList.remove('open'); backdrop.classList.remove('open'); }
+
+  toggle.addEventListener('click', () => {
+    links.classList.contains('open') ? closeMenu() : openMenu();
+  });
+  close.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', closeMenu);
+  });
+
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  const lightQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
+  function applyTheme(theme){
+    if(theme === 'light'){
+      root.setAttribute('data-theme', 'light');
+      themeToggle.textContent = 'Night';
+      themeToggle.setAttribute('aria-label', 'Switch to night theme');
+    } else {
+      root.removeAttribute('data-theme');
+      themeToggle.textContent = 'Day';
+      themeToggle.setAttribute('aria-label', 'Switch to day theme');
+    }
+  }
+  function setTheme(theme){
+    applyTheme(theme);
+    localStorage.setItem('theme', theme);
+  }
+  const savedTheme = localStorage.getItem('theme');
+  applyTheme(savedTheme || (lightQuery && lightQuery.matches ? 'light' : 'dark'));
+  themeToggle.addEventListener('click', () => {
+    setTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+  });
+  if(lightQuery){
+    lightQuery.addEventListener('change', (e) => {
+      if(!localStorage.getItem('theme')) applyTheme(e.matches ? 'light' : 'dark');
+    });
+  }
+</script>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1705a97ce4dc4eeab9d9ba615affe531"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
