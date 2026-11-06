@@ -544,7 +544,7 @@
 </script>
 
 <script>
-  // Count clicks on the CV, Publications, Teaching and language links by pinging a path
+  // Count clicks on the CV, Publications, Teaching, language links and the bio toggle by pinging a path
   // that Cloudflare logs. No URL changes, nothing sent to a third party.
   (function(){
     var targets = [['cv_website.pdf', 'cv'], ['publications.html', 'publications'], ['teaching.html', 'teaching']];
@@ -560,6 +560,14 @@
     }
     document.addEventListener('click', ping);
     document.addEventListener('auxclick', ping);
+
+    // Count each time the extended bio is expanded or collapsed.
+    var more = document.querySelector('details.about-more');
+    if(more){
+      more.addEventListener('toggle', function(){
+        if(navigator.sendBeacon) navigator.sendBeacon(more.open ? '/_c/bio-open' : '/_c/bio-close');
+      });
+    }
   })();
 </script>
 
